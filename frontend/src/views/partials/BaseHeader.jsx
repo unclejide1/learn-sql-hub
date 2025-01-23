@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function BaseHeader() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary header-background" data-bs-theme="dark">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
                         LSH
@@ -22,17 +22,7 @@ function BaseHeader() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/pages/contact-us/">
-                                    {" "}
-                                    <i className="fas fa-phone"></i> Contact Us
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/pages/about-us/">
-                                    <i className="fas fa-address-card"></i> About Us
-                                </Link>
-                            </li>
+                            
                             <li className="nav-item dropdown">
                                 <a
                                     className="nav-link dropdown-toggle"
@@ -147,26 +137,15 @@ function BaseHeader() {
                                 </ul>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input
-                                className="form-control me-2 w-100"
-                                type="search"
-                                placeholder="Search Courses"
-                                aria-label="Search Courses"
-                            />
-                            <button className="btn btn-outline-success w-50" type="submit">
-                                Search <i className="fas fa-search"></i>
-                            </button>
-                        </form>
                         <Link to="/login/" className="btn btn-primary ms-2" type="submit">
                             Login <i className="fas fa-sign-in-alt"></i>
                         </Link>
                         <Link to="/register/" className="btn btn-primary ms-2" type="submit">
                             Register <i className="fas fa-user-plus"> </i>
                         </Link>
-                        <Link className="btn btn-success ms-2" to="/cart/">
+                        {/* <Link className="btn btn-success ms-2" to="/cart/">
                             Cart (3) <i className="fas fa-shopping-cart"> </i>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </nav>

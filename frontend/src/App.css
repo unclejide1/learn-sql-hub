@@ -40,3 +40,46 @@
 .read-the-docs {
   color: #888;
 } */
+
+
+.hero-image{
+  height: 100% !important;
+  width: 100% !important;
+}
+
+
+/* Dark tones */
+
+.header-background {
+
+  background-color: rgb(30, 20, 23);
+
+}
+ 
+.footer-background {
+
+  background-color: rgb(27, 7, 3);
+
+}
+ 
+.alt-header-background {
+
+  background-color: rgb(41, 33, 40);
+
+}
+ 
+.alt-footer-background {
+
+  background-color: rgb(31, 21, 24);
+
+}
+ 
+/* Light tone */
+
+.light-background {
+
+  background-color: rgb(255, 255, 255);
+
+}
+
+ 
