@@ -175,9 +175,10 @@ if USE_S3 == True:
 else: 
     
 
-    STATIC_URL = 'static/'
     STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'django/contrib/admin/') ]
-    STATIC_ROOT = BASE_DIR / 'staticfiles'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = '/root/learn-sql-hub/backend/static/'
+
 
     MEDIA_URL = 'media/'
     MEDIA_ROOT = BASE_DIR / 'media'
