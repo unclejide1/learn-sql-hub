@@ -31,7 +31,7 @@ from distutils.util import strtobool
 from api import serializer as api_serializers
 
 # Models
-from api.models import Certificate, CompletedLesson, Country, EnrolledCourse, Note, Teacher, Category, Course, Variant, VariantItem, Cart, CartOrder, CartOrderItem, Review, Notification, Coupon, Wishlist, Question_Answer, Question_Answer_Message
+from api.models import Certificate, CompletedLesson, Country, EnrolledCourse, Note, Teacher, Category, Course, Variant, VariantItem, Cart, CartOrder, CartOrderItem, Review, Notification, Coupon, Wishlist, Question_Answer, Question_Answer_Message, QuizQuestion, QuizOption
 from userauths.models import Profile, User
 
 
@@ -1286,4 +1286,9 @@ class TeacherNotificationDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         teacher = Teacher.objects.get(id=teacher_id)
         return Notification.objects.get(teacher=teacher, id=noti_id)
 
-    
+class QuizQuestionCreateAPIView(generics.CreateAPIView):
+    queryset = QuizQuestion.objects.all()
+    serializer_class = api_serializers.QuizQuestionSerializer
+    permission_classes = [AllowAny]
+    # You can add authentication/permission classes if required:
+    # permission_classes = [IsAuthenticated]

@@ -514,3 +514,18 @@ class Country(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class QuizQuestion(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='quiz_questions')
+    question_text = models.TextField()
+ 
+    def __str__(self):
+        return self.question_text
+ 
+class QuizOption(models.Model):
+    question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE, related_name='options')
+    option_text = models.CharField(max_length=255)
+    is_correct = models.BooleanField(default=False)
+ 
+    def __str__(self):
+        return self.option_text

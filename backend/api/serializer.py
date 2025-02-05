@@ -6,7 +6,7 @@ from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from userauths.models import Profile, User
-from api.models import CompletedLesson, EnrolledCourse, Note, Teacher, Category, Course, Variant, VariantItem, Cart, CartOrder, CartOrderItem, Review, Notification, Coupon, Wishlist, Question_Answer, Question_Answer_Message
+from api.models import CompletedLesson, EnrolledCourse, Note, Teacher, Category, Course, Variant, VariantItem, Cart, CartOrder, CartOrderItem, Review, Notification, Coupon, Wishlist, Question_Answer, Question_Answer_Message, QuizQuestion, QuizOption
 
 
 # Define a custom serializer that inherits from TokenObtainPairSerializer
@@ -454,3 +454,39 @@ class TeacherSummarySerializer(serializers.Serializer):
     total_students = serializers.IntegerField(default=0)
     total_revenue = serializers.IntegerField(default=0)
     monthly_revenue = serializers.IntegerField(default=0)
+
+class QuizOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuizOption
+        fields = ('id', 'option_text', 'is_correct')
+ 
+class QuizQuestionSerializer(serializers.ModelSerializer):
+    options = QuizOptionSerializer(many=True)
+ 
+    class Meta:
+        model = QuizQuestion
+        fields = ('id', 'course', 'question_text', 'options')
+ 
+    def create(self, validated_data):
+        # Extract and remove the options data from the validated data
+        options_data = validated_data.pop('options')
+        # Create the QuizQuestion instance
+        question = QuizQuestion.objects.create(**validated_data)
+        # Create each QuizOption instance linked to the question
+        for option_data in options_data:
+            QuizOption.objects.create(question=question, **option_data)
+        return question
+ 
+    def update(self, instance, validated_data):
+        options_data = validated_data.pop('options', None)
+        instance.question_text = validated_data.get('question_text', instance.question_text)
+        instance.course = validated_data.get('course', instance.course)
+        instance.save()
+ 
+        # Optionally, update options: this example simply removes all old options and creates new ones.
+        if options_data is not None:
+            instance.options.all().delete()
+            for option_data in options_data:
+                QuizOption.objects.create(question=instance, **option_data)
+        return instance
+ 

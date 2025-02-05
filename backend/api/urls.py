@@ -66,6 +66,7 @@ urlpatterns = [
     path('student/question-answer-detail/<course_id>/<qa_id>/', api_views.QuestionAnswerDetailAPIView.as_view()),
     path('student/question-answer-create/', api_views.QuestionAnswerCreateAPIView.as_view()),
     path('student/question-answer-message-create/', api_views.QuestionAnswerMessageSendAPIView.as_view()),
+    path('quiz/questions/create/', api_views.QuizQuestionCreateAPIView.as_view(), name='quiz-question-create'),
 
     ########################### Teacher API Routes ###########################
     ########################### Teacher API Routes ###########################
