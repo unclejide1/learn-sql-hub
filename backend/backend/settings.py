@@ -174,7 +174,6 @@ if USE_S3 == True:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
 else: 
     
-
     STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'django/contrib/admin/') ]
     STATIC_URL = '/static/'
     STATIC_ROOT = '/root/learn-sql-hub/backend/static/'
