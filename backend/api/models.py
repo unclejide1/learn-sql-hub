@@ -201,7 +201,7 @@ import math
 class VariantItem(models.Model):
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE, related_name='variant_items')
     title = models.CharField(max_length=1000, verbose_name="Lecture Title", null=True, blank=True)
-    description = models.TextField(max_length=200, verbose_name="Lecture Description", null=True, blank=True)
+    description = models.TextField(max_length=2000, verbose_name="Lecture Description", null=True, blank=True)
     file = models.FileField(upload_to="course-file", verbose_name="Lecture File", null=True, blank=True)
     duration = models.DurationField(null=True, blank=True) 
     content_duration = models.CharField(null=True, blank=True, max_length=1000) 
